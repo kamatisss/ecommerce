@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block title %}ZAIDE{% endblock %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('{% static "images/hero-bg-img.jpg" %}') no-repeat center center/cover;">
+    <div class="hero-content">
+        {% if query %}
+            <h1>Search Results</h1>
+            <p>Showing results for: <strong>{{ query }}</strong></p>
+            <a href="{% url 'home' %}" class="btn-secondary">Back to Home</a>
+        {% else %}
+        <h1>Discover the Latest in Tech</h1>
+        <p>From cutting edge smartphones to powerful laptops, find premium tech products that enhance your digital life.</p>
+        <div class="buttons">
+            <button class="btn-primary">Shop Now</button>
+        </div>
+        {% endif %}
+    </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands">
+        <h2>Top Leading Brands</h2>
+        <div class="brands-container">
+            <img src="{% static 'images/brands/lenovo.png' %}" alt="Lenovo">
+            <img src="{% static 'images/brands/huawei.png' %}" alt="Huawei">
+            <img src="{% static 'images/brands/asus.png' %}" alt="Asus">
+            <img src="{% static 'images/brands/hp.png' %}" alt="HP">
+            <img src="{% static 'images/brands/samsung.png' %}" alt="Samsung">
+            <img src="{% static 'images/brands/apple.png' %}" alt="Apple">
+            <img src="{% static 'images/brands/intel.png' %}" alt="Intel">
+            <img src="{% static 'images/brands/nvidia.png' %}" alt="Nvidia">
+            <img src="{% static 'images/brands/oppo.png' %}" alt="Oppo">
+            <img src="{% static 'images/brands/sony.png' %}" alt="Sony">
+            <img src="{% static 'images/brands/dell.png' %}" alt="Dell">
+            <img src="{% static 'images/brands/vivo.png' %}" alt="Vivo">
+            <img src="{% static 'images/brands/canon.png' %}" alt="Canon">
+            <img src="{% static 'images/brands/xiaomi.png' %}" alt="Xiaomi">
+            <img src="{% static 'images/brands/logitech.png' %}" alt="Logitech">
+            <img src="{% static 'images/brands/acer.png' %}" alt="Acer">
+            <img src="{% static 'images/brands/gigabyte.png' %}" alt="Gigabyte">
+            <img src="{% static 'images/brands/one-plus.png' %}" alt="Oneplus">
+            <img src="{% static 'images/brands/nokia.png' %}" alt="Nokia">
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <div id="products" class="featured-section">
+        <div class="featured-header">
+            <h1>Featured Products</h1>
+            <p>Discover our handpicked selection of premium tech products designed to elevate your digital experience</p>
+        </div>
+
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                {% if product.product_image %}
+                    <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
+                {% else %}
+                    <img src="/static/images/no-image.png" alt="No image available">
+                {% endif %}
+
+                <div class="product-info">
+                    <span class="product-category">{{ product.product_category }}</span>
+                    <h2>{{ product.product_name }}</h2>
+                    <p class="desc">{{ product.product_description|truncatewords:12 }}</p>
+                    <p class="price">₱{{ product.price|intcomma }}</p>
+
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-banner" style="background: url('{% static "images/about-img1.jpg" %}') no-repeat center center/cover;"></section>
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2>About ZAIDE</h2>
+            <p class="about-text">
+                At ZAIDE, we bring you the latest and most reliable tech products, carefully curated to elevate your digital lifestyle. 
+                Our goal is to make premium technology accessible, convenient, and affordable for everyone.
+            </p>
+
+            <div class="mission-vision">
+                <div class="mv-box">
+                    <h3>Our Mission</h3>
+                    <p>
+                        To provide top-notch digital products that inspire creativity, boost productivity, and bring value to everyday life. 
+                        We are committed to making digital solutions accessible and user-friendly while maintaining affordability and quality.
+                    </p>
+                </div>
+                <div class="mv-box">
+                    <h3>Our Vision</h3>
+                    <p>
+                        To become a leading global provider of digital products, shaping the future of innovation and technology. 
+                        We envision a world where digital solutions seamlessly enhance learning, work, and creativity for everyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why shop at Zaide? -->
+    <section class="why-shop">
+        <h2>Why shop at ZAIDE?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fa-solid fa-award"></i>
+                <h3>Premium Quality</h3>
+                <p>Curated selection of high-quality tech products from trusted brands.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Fast & Free Shipping</h3>
+                <p>Free Shipping on all orders with quick delivery to your doorstep.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Expert customer support available around the clock for all your needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner Section -->
+    <section class="promo-wrapper">
+        <div class="promo-banner">
+            <div class="promo-image">
+                <img src="{% static 'images/promo1.jpg' %}" alt="Promo">
+            </div>
+            <div class="promo-text">
+                <p class="offer">LIMITED OFFER</p>
+                <h2>35% off only this Friday <br> and get special gift</h2>
+                <a href="#" class="btn">Grab it now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>Subscribe to our newsletter to get updates <br> to our latest collections</h2>
+        <p>Get 20% on your first order just by subscribing to our newsletter</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <small>
+            You will be able to unsubscribe at any time. <br>
+            Read our Privacy Policy <a href="#">here</a>
+        </small>
+    </section>
+
+{% endblock %}
